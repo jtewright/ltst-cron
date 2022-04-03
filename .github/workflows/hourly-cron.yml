@@ -1,0 +1,13 @@
+name: hourly-cron
+on:
+  schedule:
+    - cron: '0 * * * *'
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Calls Latest's hourly cron job API route
+        run: |
+          curl --request POST \
+          --url 'https://ltst.xyz/api/cron/hour' \
+          --header 'Authorization: Bearer ${{ secrets.CRON_SECRET }}'

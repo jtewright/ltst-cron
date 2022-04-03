@@ -1,0 +1,13 @@
+name: ten-minutely-cron
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Calls Latest's ten minutely cron job API route
+        run: |
+          curl --request POST \
+          --url 'https://ltst.xyz/api/cron/10minute' \
+          --header 'Authorization: Bearer ${{ secrets.CRON_SECRET }}'

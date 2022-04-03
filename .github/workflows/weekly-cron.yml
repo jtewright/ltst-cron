@@ -1,0 +1,13 @@
+name: weekly-cron
+on:
+  schedule:
+    - cron: '0 0 * * 0'
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Calls Latest's weekly cron job API route
+        run: |
+          curl --request POST \
+          --url 'https://ltst.xyz/api/cron/week' \
+          --header 'Authorization: Bearer ${{ secrets.CRON_SECRET }}'

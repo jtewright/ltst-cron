@@ -1,0 +1,13 @@
+name: yearly-cron
+on:
+  schedule:
+    - cron: '0 0 1 1 *'
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Calls Latest's yearly cron job API route
+        run: |
+          curl --request POST \
+          --url 'https://ltst.xyz/api/cron/year' \
+          --header 'Authorization: Bearer ${{ secrets.CRON_SECRET }}'

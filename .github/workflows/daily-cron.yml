@@ -1,0 +1,13 @@
+name: daily-cron
+on:
+  schedule:
+    - cron: '0 0 * * *'
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Calls Latest's daily cron job API route
+        run: |
+          curl --request POST \
+          --url 'https://ltst.xyz/api/cron/day' \
+          --header 'Authorization: Bearer ${{ secrets.CRON_SECRET }}'

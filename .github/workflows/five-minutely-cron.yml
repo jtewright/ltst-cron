@@ -1,0 +1,13 @@
+name: five-minutely-cron
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+jobs:
+  cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Calls Latest's five minutely cron job API route
+        run: |
+          curl --request POST \
+          --url 'https://ltst.xyz/api/cron/5minute' \
+          --header 'Authorization: Bearer ${{ secrets.CRON_SECRET }}'
